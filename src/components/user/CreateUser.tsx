@@ -5,7 +5,7 @@ import { useRolesStore } from "../../stores/rol.store";
 
 const CreateUser = ({ onCloseModal }: { onCloseModal: () => void }) => {
   const { OnCreate } = useUsersStore();
-  const { OnGetRoles, rol } = useRolesStore()
+  const { OnGetRoles, roles } = useRolesStore()
   const [department, setDepartment] = useState("");
   const [municipality, setMunicipality] = useState("");
   const [complement, setComplement] = useState("");
@@ -30,7 +30,7 @@ const CreateUser = ({ onCloseModal }: { onCloseModal: () => void }) => {
   };
 
   useEffect(() => {
-    OnGetRoles()
+    OnGetRoles(1, 5, "")
   }, [])
 
   return (
@@ -43,7 +43,7 @@ const CreateUser = ({ onCloseModal }: { onCloseModal: () => void }) => {
           value={rolId}
           onChange={(e) => setRolId(parseInt(e.target.value))}
         >
-          {rol.map((r) => (
+          {roles.map((r) => (
             <SelectItem key={r.id} value={r.name}>
               {r.name}
             </SelectItem>

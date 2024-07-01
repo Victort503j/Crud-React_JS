@@ -15,7 +15,7 @@ interface Props {
 }
 
 const UpdateUser = (props: Props) => {
-  const { OnGetRoles, rol } = useRolesStore();
+  const { OnGetRoles, roles } = useRolesStore();
   const { OnUpdate } = useUsersStore();
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -29,7 +29,7 @@ const UpdateUser = (props: Props) => {
     setEmail(props.email);
     setRolId(props.rolId);
     setPassword(props.password);
-    OnGetRoles();
+    OnGetRoles(1, 5, "");
   }, [props.name, props.lastName, props.email, props.rolId, props.password, OnGetRoles]);
 
   const handleUpdateUser = () => {
@@ -48,7 +48,7 @@ const UpdateUser = (props: Props) => {
           defaultSelectedKeys={[props.rolId.toString()]}
           onChange={(e) => setRolId(parseInt(e.target.value))}
         >
-          {rol.map((r) => (
+          {roles.map((r) => (
             <SelectItem key={r.id} value={r.id}>
               {r.name}
             </SelectItem>
